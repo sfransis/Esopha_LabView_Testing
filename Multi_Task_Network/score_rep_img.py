@@ -107,7 +107,8 @@ def circle_crop(imgog,mask_3, x0, x1, y0, y1, dx, dx1, dy, dy1):
     # scale = 1.60 # Conversion tablet to fast hrme)
     # mask_3 = cv2.resize(mask_3, (int(mask_3.shape[1]*scale), int(mask_3.shape[0]*scale)), interpolation=cv2.INTER_NEAREST)
     #print(imgog.shape, mask_3.shape)
-    
+    print(" we also here" , imgog.shape)
+    print(" and here as well", mask_3.shape)
     imgog1 = mask_3*imgog
     ## Need to find x and y min max coordinates 
     # x, y = np.where(mask_3[:,:,0]==1)
@@ -213,6 +214,7 @@ def process_single_image(image, json_path):
     roi_pwd = r'C:\Users\EsophaHRME_Dell2\Documents\GitHub\Esophageal_HRME_Software\EsophagealDeployment\Multi_Task_Network\HRME_Mask.png'
 
     roi_mask = cv2.imread(roi_pwd)
+    print("Yooooo we here boibiboajfdoisa;" , roi_mask.shape)
     path_model = r'C:\Users\EsophaHRME_Dell2\Documents\GitHub\Esophageal_HRME_Software\EsophagealDeployment\Multi_Task_Network\model_30.pth'
     gpu = 0
     scaleIn = 1
@@ -251,6 +253,8 @@ def process_single_image(image, json_path):
         print(f"\n\n This is the imagename: \n {imagename}\n\n")
         print(f"\n\n This is the image that has been passed in: \n {image}\n\n")
         image = cv2.imread(image)
+        image = cv2.resize(image, (720, 540))
+        print("\n\n\n\n YOOOOOOOOO the image size is: ", image.shape)
         print(f"\n\n This is the newly created image: \n {image}\n\n")
         # convert image directly to torch in GPU
         if image is None:
@@ -282,3 +286,5 @@ def process_single_image(image, json_path):
         # pass_qc_arr.append(1)
         #elapsed = time.time() - start
         return str(prob_mean)
+#{"Score": "0.145597", "ImageName": "image3_14998_18"}
+process_single_image(r'C:\Users\EsophaHRME_Dell2\Desktop\Training HRME\22-027 image1.png', r"C:\Users\EsophaHRME_Dell2\Desktop\Frames_Testing\runmodetest_241105\scores\image3_14998_18.json")
